@@ -5,4 +5,6 @@
 void render();
 void render1();
 void changeSize(int,int);
+void processNormalCase( unsigned char,int,int);
+void processSpecialCase(int,int,int);
 
