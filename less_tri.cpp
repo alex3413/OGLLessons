@@ -25,15 +25,20 @@ int main(int argc, char** argv) {
 	glutDisplayFunc(render);
 	glutReshapeFunc(changeSize);
 	glutIdleFunc(render);
-	glutKeyboardFunc(processNormalCase);
+	//glutKeyboardFunc(processNormalCase);
+		
+		
 	glutSpecialFunc(processSpecialCase);
 
-
+	glutSpecialFunc(pressKey);
+	glutMouseFunc(mouseButton);
+	glutMotionFunc(mouseMove);
  
 	
 	glutIgnoreKeyRepeat(1);
+
 	glutSpecialUpFunc(releaseKey);
-		glutSpecialFunc(pressKey);
+
 	Hide();
 	
 	glutMainLoop();

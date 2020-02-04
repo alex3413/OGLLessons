@@ -35,6 +35,12 @@ void render(){
 	glEnd();*/
 	glTranslatef(0.0f ,0.75f, 0.0f);
 	glutSolidSphere(0.75f,20,20);
+	glPushMatrix();
+	glColor3f(red-0.5f,green-0.5f,blue-0.5f);
+	glTranslatef(0.0f ,0.5f, 0.0f);
+	glutSolidSphere(0.5f,20,20);
+	glRotatef(0.0f,1.0f, 0.0f, 0.0f);
+	glutSolidCone(0.08f,0.5f,10,2);
 //	angle+=0.1f;
 	glutSwapBuffers();
 	
@@ -113,9 +119,15 @@ void pressKey(int key, int xx, int yy) {
 			break;
 		case GLUT_KEY_UP:
 			deltaMove = 0.5f;
+			red=1.0f;
+			green=0.0f;
+			blue=0.0f;
 			break;
 		case GLUT_KEY_DOWN:
 			deltaMove = -0.5f;
+			red=0.0f;
+			green=1.0f;
+			blue=0.0f;
 			break;
 	}
 }
@@ -128,9 +140,37 @@ void releaseKey(int key, int x, int y) {
 			deltaAngle = 0.0f;
 			break;
 		case GLUT_KEY_UP:
+			deltaMove = 0;
+			red=1.0f;
+			green=1.0f;
+			blue=1.0f;
+			break;
 		case GLUT_KEY_DOWN: 
 			deltaMove = 0;
+			red=1.0f;
+			green=1.0f;
+			blue=1.0f;
 			break;
+	}
+}
+void mouseMove(int x,int y){
+	
+}
+void mouseButton(int key,int state,int y,int x){
+	if (key == GLUT_LEFT_BUTTON) {
+		if(state == GLUT_UP){
+		
+			red=1.0f;
+			green=1.0f;
+			blue=1.0f;
+		}
+		else{
+		 state=GLUT_DOWN;
+			red=0.0f;
+			green=1.0f;
+			blue=0.0f;
+		 
+		}
 	}
 }
 
