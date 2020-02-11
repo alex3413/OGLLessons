@@ -4,23 +4,25 @@
 
 float angle=0.0f;
 float red=1.0f,green=1.0f,blue=1.0f;
-float lx=0.0f, lz=-1.0f;
+float lx=0.0f, lz=-1.0f,ly = 0.0f;
 
-float x=0.0f, z=5.0f;
+float x=0.0f, z=5.0f, y=1.0f;
 
 float deltaAngle = 0.0f;
 float deltaMove = 0;
+int xOrigin=-1;
+int yOrigin=-1;
 void render(){
 	if (deltaMove)
 		computePos(deltaMove);
-	if (deltaAngle)
-		computeDir(deltaAngle);
+//	if (deltaAngle)
+//		computeDir(deltaAngle);
 	
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glLoadIdentity();
 	
-	gluLookAt(	   x,	1.0f,	  z,
+	gluLookAt(	  x,	1.0f,  z,
 				x+lx,	1.0f,  z+lz,
 				0.0f,   1.0f,  0.0f	);
 	
@@ -36,11 +38,11 @@ void render(){
 	glTranslatef(0.0f ,0.75f, 0.0f);
 	glutSolidSphere(0.75f,20,20);
 	glPushMatrix();
-	glColor3f(red-0.5f,green-0.5f,blue-0.5f);
+/*	glColor3f(red-0.5f,green-0.5f,blue-0.5f);
 	glTranslatef(0.0f ,0.5f, 0.0f);
 	glutSolidSphere(0.5f,20,20);
 	glRotatef(0.0f,1.0f, 0.0f, 0.0f);
-	glutSolidCone(0.08f,0.5f,10,2);
+	glutSolidCone(0.08f,0.5f,10,2);   */
 //	angle+=0.1f;
 	glutSwapBuffers();
 	
@@ -100,6 +102,7 @@ void computePos(float deltaMove) {
  
 	x += deltaMove * lx * 0.01f;
 	z += deltaMove * lz * 0.01f;
+	y += deltaMove * ly * 0.01f;
 }
  
 void computeDir(float deltaAngle) {
@@ -107,6 +110,7 @@ void computeDir(float deltaAngle) {
 	angle += deltaAngle;
 	lx = sin(angle);
 	lz = -cos(angle);
+	ly = sin(angle);
 }
 void pressKey(int key, int xx, int yy) {
  
@@ -154,18 +158,27 @@ void releaseKey(int key, int x, int y) {
 	}
 }
 void mouseMove(int x,int y){
-	
+	if(xOrigin>=0){
+		deltaAngle= (x-xOrigin)*0.001f;
+		lx = sin(angle+deltaAngle);
+		lz = -cos(angle+deltaAngle);
+		ly = yOrigin;
+	}
 }
-void mouseButton(int key,int state,int y,int x){
+void mouseButton(int key,int state,int x,int y){
 	if (key == GLUT_LEFT_BUTTON) {
 		if(state == GLUT_UP){
-		
+			angle+=deltaAngle;
+			xOrigin=-1;
+			yOrigin=-1;
 			red=1.0f;
 			green=1.0f;
 			blue=1.0f;
 		}
 		else{
-		 state=GLUT_DOWN;
+		 //state=GLUT_DOWN;
+			 xOrigin=x;
+			 yOrigin=y;
 			red=0.0f;
 			green=1.0f;
 			blue=0.0f;

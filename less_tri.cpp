@@ -26,21 +26,13 @@ int main(int argc, char** argv) {
 	glutReshapeFunc(changeSize);
 	glutIdleFunc(render);
 	//glutKeyboardFunc(processNormalCase);
-		
-		
 	glutSpecialFunc(processSpecialCase);
-
 	glutSpecialFunc(pressKey);
 	glutMouseFunc(mouseButton);
 	glutMotionFunc(mouseMove);
- 
-	
-	glutIgnoreKeyRepeat(1);
-
+ 	glutIgnoreKeyRepeat(1);
 	glutSpecialUpFunc(releaseKey);
-
 	Hide();
-	
 	glutMainLoop();
 	
 	return 0;

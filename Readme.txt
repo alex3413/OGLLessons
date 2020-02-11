@@ -1,4 +1,4 @@
 cd ///////////////////////
 git add *
 git stash
-git pull orirgin master
+git pull origin master
