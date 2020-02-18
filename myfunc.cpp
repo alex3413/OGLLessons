@@ -1,14 +1,17 @@
 #include"mywindow.h"
 #include<math.h>
 
-
+float alfa=0.0f;
+float gamma=0.0f;
 float angle=0.0f;
+float beta=0.0f;
 float red=1.0f,green=1.0f,blue=1.0f;
 float lx=0.0f, lz=-1.0f,ly = 0.0f;
 
-float x=0.0f, z=5.0f, y=1.0f;
+float x=0.0f, z=5.0f, y=0.0f;
 
 float deltaAngle = 0.0f;
+float deltaBeta = 0.0f; 
 float deltaMove = 0;
 int xOrigin=-1;
 int yOrigin=-1;
@@ -21,29 +24,44 @@ void render(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glLoadIdentity();
-	
-	gluLookAt(	  x,	1.0f,  z,
-				x+lx,	1.0f,  z+lz,
+	gluLookAt(	  x,	y,  z,
+				x-lx,	y+ly,  z+lz,
 				0.0f,   1.0f,  0.0f	);
 	
-//	glRotatef(angle,0.0f,1.0f,0.0f);
-	glColor3f(red,green,blue);
-/*glBegin(GL_QUADS);
-		glVertex3f(-100.0f, 0.0f, -100.0f);
-		glVertex3f(-100.0f, 0.0f,  100.0f);
-		glVertex3f( 100.0f, 0.0f,  100.0f);
-		glVertex3f( 100.0f, 0.0f, -100.0f);;
-	
-	glEnd();*/
-	glTranslatef(0.0f ,0.75f, 0.0f);
-	glutSolidSphere(0.75f,20,20);
+	glRotatef(alfa,0.0f,1.0f,0.0f);
 	glPushMatrix();
-/*	glColor3f(red-0.5f,green-0.5f,blue-0.5f);
-	glTranslatef(0.0f ,0.5f, 0.0f);
-	glutSolidSphere(0.5f,20,20);
-	glRotatef(0.0f,1.0f, 0.0f, 0.0f);
-	glutSolidCone(0.08f,0.5f,10,2);   */
-//	angle+=0.1f;
+	glColor3f(red,green,blue);
+	
+	glBegin(GL_TRIANGLES);
+	glVertex3d(0.0f,0.5f,0.0f);  
+	glVertex3d(-0.5f,0.0f,0.0f);
+	glVertex3d(0.5,0.0f,0.0f);
+	glEnd();
+	glPopMatrix();
+	
+	glRotatef(gamma,0.0f,1.0f,0.0f);
+	glPushMatrix();
+	glColor3f(0.5f,green,blue);
+	glBegin(GL_TRIANGLES);
+	glVertex3d(0.0f,0.0f,0.0f);
+	glVertex3d(-0.5f,-0.5f,0.0f);
+	glVertex3d(0.5,-0.5f,0.0f);
+	glEnd();
+	glPopMatrix();
+/*	glTranslatef(0.0f ,0.75f, 0.0f);
+	glutSolidSphere(0.75f,20,20);
+	glTranslatef(-1.0f ,0.0f, 0.0f);
+//	glPopMatrix();
+	
+	
+	glColor3f(red-0.5,green-0.5,blue-0.5);
+	glTranslatef(0.0f ,0.75f, 0.0f);
+	glutSolidSphere(0.25f,20,20);
+	glTranslatef(-1.0f ,0.0f, 0.0f);
+	*/
+	
+	gamma+=0.1f;
+	alfa+=0.1f;
 	glutSwapBuffers();
 	
 }
@@ -117,9 +135,11 @@ void pressKey(int key, int xx, int yy) {
 	switch (key) {
 		case GLUT_KEY_LEFT:
 			deltaAngle = -1.0f;
+			deltaBeta = -1.0f;
 			break;
 		case GLUT_KEY_RIGHT:
 			deltaAngle = 1.0f;
+			deltaBeta = 1.0f;
 			break;
 		case GLUT_KEY_UP:
 			deltaMove = 0.5f;
@@ -135,13 +155,13 @@ void pressKey(int key, int xx, int yy) {
 			break;
 	}
 }
- 
 void releaseKey(int key, int x, int y) {
  
 	switch (key) {
 		case GLUT_KEY_LEFT:
 		case GLUT_KEY_RIGHT: 
 			deltaAngle = 0.0f;
+			deltaBeta = 0.0f;
 			break;
 		case GLUT_KEY_UP:
 			deltaMove = 0;
@@ -158,17 +178,19 @@ void releaseKey(int key, int x, int y) {
 	}
 }
 void mouseMove(int x,int y){
-	if(xOrigin>=0){
+	if(xOrigin>=0&&yOrigin>=0){
 		deltaAngle= (x-xOrigin)*0.001f;
+		deltaBeta= (y-yOrigin)*0.001f;
 		lx = sin(angle+deltaAngle);
 		lz = -cos(angle+deltaAngle);
-		ly = yOrigin;
+		ly = cos(angle+deltaAngle)*sin(beta+deltaBeta);
 	}
 }
 void mouseButton(int key,int state,int x,int y){
 	if (key == GLUT_LEFT_BUTTON) {
 		if(state == GLUT_UP){
 			angle+=deltaAngle;
+			beta+=deltaBeta;
 			xOrigin=-1;
 			yOrigin=-1;
 			red=1.0f;
@@ -185,6 +207,11 @@ void mouseButton(int key,int state,int x,int y){
 		 
 		}
 	}
+}
+void timefunc(int value) // Timer function
+{
+  glutPostRedisplay();  // Redraw windows
+  glutTimerFunc(40, timefunc, 0); // Setup next timer
 }
 
 

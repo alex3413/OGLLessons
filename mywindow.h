@@ -16,4 +16,5 @@ void computePos(float deltaMove);
 void releaseKey(int key, int x, int y);
 void mouseMove(int,int);
 void mouseButton(int,int,int,int);
+void timefunc(int);
 
