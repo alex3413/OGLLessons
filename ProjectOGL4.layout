@@ -2,6 +2,7 @@
 Order=
 Focused=-1
 [Editor_0]
+<<<<<<< HEAD
 CursorCol=22
 CursorRow=21
 TopLine=1
@@ -10,6 +11,19 @@ LeftChar=1
 CursorCol=3
 CursorRow=214
 TopLine=202
+=======
+CursorCol=2
+CursorRow=28
+TopLine=7
+LeftChar=1
+[Editors]
+Order=0,1,2
+Focused=1
+[Editor_1]
+CursorCol=7
+CursorRow=28
+TopLine=22
+>>>>>>> 6dd4df9e4a84879e0a4d0bde5534ace661c646ed
 LeftChar=1
 [Editor_2]
 CursorCol=20

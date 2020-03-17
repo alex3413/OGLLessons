@@ -11,7 +11,11 @@ float lx=0.0f, lz=-1.0f,ly = 0.0f;
 float x=0.0f, z=5.0f, y=0.0f;
 
 float deltaAngle = 0.0f;
+<<<<<<< HEAD
 float deltaBeta = 0.0f; 
+=======
+float deltaBeta = 0.0f;
+>>>>>>> 6dd4df9e4a84879e0a4d0bde5534ace661c646ed
 float deltaMove = 0;
 int xOrigin=-1;
 int yOrigin=-1;
@@ -24,10 +28,15 @@ void render(){
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	glLoadIdentity();
+<<<<<<< HEAD
+=======
+	
+>>>>>>> 6dd4df9e4a84879e0a4d0bde5534ace661c646ed
 	gluLookAt(	  x,	y,  z,
 				x-lx,	y+ly,  z+lz,
 				0.0f,   1.0f,  0.0f	);
 	
+<<<<<<< HEAD
 	glRotatef(alfa,0.0f,1.0f,0.0f);
 	glPushMatrix();
 	glColor3f(red,green,blue);
@@ -62,6 +71,16 @@ void render(){
 	
 	gamma+=0.1f;
 	alfa+=0.1f;
+=======
+//	glRotatef(angle,0.0f,1.0f,0.0f);
+	glPushMatrix();
+	glColor3f(red,green,blue);
+	glTranslatef(0.0f ,0.75f, 0.0f);
+	glutSolidSphere(0.75f,20,20);
+	glTranslatef(-0.1f ,0.0f, 0.0f);
+	glPopMatrix();
+//	angle+=0.1f;
+>>>>>>> 6dd4df9e4a84879e0a4d0bde5534ace661c646ed
 	glutSwapBuffers();
 	
 }
@@ -133,6 +152,7 @@ void computeDir(float deltaAngle) {
 void pressKey(int key, int xx, int yy) {
  
 	switch (key) {
+<<<<<<< HEAD
 		case GLUT_KEY_LEFT:
 			deltaAngle = -1.0f;
 			deltaBeta = -1.0f;
@@ -141,6 +161,8 @@ void pressKey(int key, int xx, int yy) {
 			deltaAngle = 1.0f;
 			deltaBeta = 1.0f;
 			break;
+=======
+>>>>>>> 6dd4df9e4a84879e0a4d0bde5534ace661c646ed
 		case GLUT_KEY_UP:
 			deltaMove = 0.5f;
 			red=1.0f;
@@ -158,17 +180,15 @@ void pressKey(int key, int xx, int yy) {
 void releaseKey(int key, int x, int y) {
  
 	switch (key) {
+<<<<<<< HEAD
 		case GLUT_KEY_LEFT:
 		case GLUT_KEY_RIGHT: 
 			deltaAngle = 0.0f;
 			deltaBeta = 0.0f;
 			break;
+=======
+>>>>>>> 6dd4df9e4a84879e0a4d0bde5534ace661c646ed
 		case GLUT_KEY_UP:
-			deltaMove = 0;
-			red=1.0f;
-			green=1.0f;
-			blue=1.0f;
-			break;
 		case GLUT_KEY_DOWN: 
 			deltaMove = 0;
 			red=1.0f;
@@ -180,10 +200,19 @@ void releaseKey(int key, int x, int y) {
 void mouseMove(int x,int y){
 	if(xOrigin>=0&&yOrigin>=0){
 		deltaAngle= (x-xOrigin)*0.001f;
+<<<<<<< HEAD
 		deltaBeta= (y-yOrigin)*0.001f;
+=======
+		deltaBeta = (y-yOrigin)*0.001f;
+>>>>>>> 6dd4df9e4a84879e0a4d0bde5534ace661c646ed
 		lx = sin(angle+deltaAngle);
-		lz = -cos(angle+deltaAngle);
 		ly = cos(angle+deltaAngle)*sin(beta+deltaBeta);
+		lz = -cos(angle+deltaAngle);
+<<<<<<< HEAD
+		ly = cos(angle+deltaAngle)*sin(beta+deltaBeta);
+=======
+		
+>>>>>>> 6dd4df9e4a84879e0a4d0bde5534ace661c646ed
 	}
 }
 void mouseButton(int key,int state,int x,int y){
@@ -199,8 +228,8 @@ void mouseButton(int key,int state,int x,int y){
 		}
 		else{
 		 //state=GLUT_DOWN;
-			 xOrigin=x;
-			 yOrigin=y;
+			xOrigin=x;
+			yOrigin=y;
 			red=0.0f;
 			green=1.0f;
 			blue=0.0f;
