@@ -1,5 +1,8 @@
+//#pragma once
+#include "OGLPong.h"
 class game{
-	int othoWid; // размеры координатной сетки
+	public:
+	int orthoWid; // размеры координатной сетки
 	int orthoHeid;
 	
 	int winWid; // размер окна
@@ -59,7 +62,7 @@ class game{
 }settings;
 
 void game::drawField(){
-	glColor(1,1,1);
+	glColor3f(1,1,1);
 	
 	glVertex2f(-fieldSizeX-borderT, -fieldSizeY-borderT);
 	glVertex2f(fieldSizeX+borderT, -fieldSizeY-borderT);
@@ -83,37 +86,37 @@ void game::drawField(){
 	
 	for(float i = fieldSizeY; i<=fieldSizeY; i+=4*mLineT){
 		glVertex2f(-mLineT, i+mLineT);
-		glVertex2F(mLineT, i+mlineT);
-		glVertex2F(mLineT, i-mlineT);
-		glVertex2F(-mLineT, i-mlineT);
+		glVertex2f(mLineT, i+mLineT);
+		glVertex2f(mLineT, i-mLineT);
+		glVertex2f(-mLineT, i-mLineT);
 		
 	}
 }
 void game::drawScore(){
 	glRasterPos2f(textPosX - 50, textPosY + 20);
-	glutBitmapCharacter(Glut_BitMap_9_BY_15, '0'+ scoreL);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, '0'+ scoreL);
 	
 	glRasterPos2f(textPosX + 30, textPosY + 20);
-	glutBitmapCharacter(Glut_BitMap_9_BY_15, '0'+ scoreR);
+	glutBitmapCharacter(GLUT_BITMAP_9_BY_15, '0'+ scoreR);
 	
 	if(scoreL == 8){
 		glRasterPos2f(textPosX - 200, textPosY + 40);
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'W');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'I');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'N');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'N');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'E');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'R');	
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'W');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'I');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'N');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'N');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'E');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'R');	
 	}
 	
 	if(scoreR == 8){
 		glRasterPos2f(textPosX + 150, textPosY + 40);
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'W');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'I');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'N');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'N');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'E');
-		glutBitmapCharacter(Glut_BitMap_9_BY_15, 'R');	
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'W');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'I');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'N');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'N');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'E');
+		glutBitmapCharacter(GLUT_BITMAP_9_BY_15, 'R');	
 		
 	}
 }

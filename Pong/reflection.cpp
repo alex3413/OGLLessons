@@ -1,3 +1,6 @@
+//#pragma once
+//#include "OGLPong.h"
+#include "settings_game.cpp"
 class reflection{
 	public:
 		float x,y;
@@ -15,3 +18,12 @@ class reflection{
 	void move();
 	void care();
 }leftP, rightP;
+
+void reflection::draw(){
+	glColor3f(1,1,1);
+	glVertex2f(x+settings.pThickness,y+size/2);
+	glVertex2f(x+settings.pThickness,y-size/2);
+	glVertex2f(x-settings.pThickness,y-size/2);
+	glVertex2f(x-settings.pThickness,y+size/2);
+	
+}

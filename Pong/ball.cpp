@@ -1,3 +1,6 @@
+#pragma once
+//#include "OGLPong.h"
+#include "settings_game.cpp"
 class ball{
 	public:
 		float x;

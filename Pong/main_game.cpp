@@ -19,8 +19,8 @@ int main(int argc, char** argv) {
 	glutKeyboardUpFunc(keyboardUpf);
 	glClearColor(0,0,0,1.0);
 	glMatrixMode(GL_PROJECTION);
-	glLoadIentity();
-	gluOrtho2D(-settings.orthoWid, settings.orthoWid, -settings.othoHeid, settings.orthoHeid);
+	glLoadIdentity();
+	gluOrtho2D(-settings.orthoWid, settings.orthoWid, -settings.orthoHeid, settings.orthoHeid);
 	Hide();
 	glutMainLoop();
 	
