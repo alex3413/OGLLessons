@@ -4,8 +4,8 @@
 CPP      = g++.exe
 CC       = gcc.exe
 WINDRES  = windres.exe
-OBJ      = main_game.o
-LINKOBJ  = main_game.o
+OBJ      = main_game.o ball.o reflection.o settings_game.o glut_callback_func.o
+LINKOBJ  = main_game.o ball.o reflection.o settings_game.o glut_callback_func.o
 LIBS     = -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib" -L"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/lib" -static-libgcc -lfreeglut -lopengl32 -lglu32
 INCS     = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include"
 CXXINCS  = -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/x86_64-w64-mingw32/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include" -I"C:/Program Files (x86)/Dev-Cpp/MinGW64/lib/gcc/x86_64-w64-mingw32/4.9.2/include/c++"
@@ -26,3 +26,15 @@ $(BIN): $(OBJ)
 
 main_game.o: main_game.cpp
 	$(CPP) -c main_game.cpp -o main_game.o $(CXXFLAGS)
+
+ball.o: ball.cpp
+	$(CPP) -c ball.cpp -o ball.o $(CXXFLAGS)
+
+reflection.o: reflection.cpp
+	$(CPP) -c reflection.cpp -o reflection.o $(CXXFLAGS)
+
+settings_game.o: settings_game.cpp
+	$(CPP) -c settings_game.cpp -o settings_game.o $(CXXFLAGS)
+
+glut_callback_func.o: glut_callback_func.cpp
+	$(CPP) -c glut_callback_func.cpp -o glut_callback_func.o $(CXXFLAGS)

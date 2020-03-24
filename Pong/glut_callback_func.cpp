@@ -1,5 +1,6 @@
-#pragma once
+
 #include "OGLPong.h"
+
 void keyboardf(unsigned char key, int x,int y){
 	switch(key){
 		case 'q':
@@ -51,11 +52,25 @@ void draw(){
 	glBegin(GL_QUADS);
 	rightP.draw();
 	leftP.draw();
+	ball.draw();
 	settings.drawField();
 	glEnd();
 	settings.drawScore();
 	glutSwapBuffers();
 	
+}
+void Timer (int value){
+	settings.win();
+	//settings.keyControl();
+	leftP.move();
+	rightP.move();
+	ball.move();
+	ball.reflection();
+	//leftP.care();
+	//rightP.care();
+	//settings.keyReset();
+	glutPostRedisplay();
+	glutTimerFunc(settings.delay, Timer, 0);
 }
 
 

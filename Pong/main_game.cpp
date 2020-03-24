@@ -7,14 +7,20 @@ void Hide(){
   Hide = FindWindowA("ConsoleWindowClass", NULL);
   ShowWindow(Hide,0);
 }
+game settings;
+reflection leftP;
+reflection rightP;
+Ball ball;
 int main(int argc, char** argv) {
 	
 	glutInit(&argc,argv);
+	settings.start_settings();
 	glutInitDisplayMode(GLUT_DEPTH|GLUT_DOUBLE|GLUT_RGBA);
 	glutInitWindowPosition (settings.winXPos,settings.winYPos);
 	glutInitWindowSize(settings.winWid, settings.winHeid);
 	glutCreateWindow("Ping_POng");
 	glutDisplayFunc(draw);
+	glutTimerFunc(settings.delay, Timer, 0);
 	glutKeyboardFunc(keyboardf);
 	glutKeyboardUpFunc(keyboardUpf);
 	glClearColor(0,0,0,1.0);

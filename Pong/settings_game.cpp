@@ -1,33 +1,7 @@
-//#pragma once
+
 #include "OGLPong.h"
-class game{
-	public:
-	int orthoWid; // размеры координатной сетки
-	int orthoHeid;
-	
-	int winWid; // размер окна
-	int winHeid;
-	
-	int winXPos; // позиция окна
-	int winYPos;
-	
-	float fieldSizeX; // размеры игрового поля
-	float fieldSizeY;
-	
-	int delay; //временной тик шарика
-	
-	float pThickness;// толщина платформы
-	float ballSize; // размер шарика
-	float borderT; // толщина рамки поля
-	float mLineT; // толщина линии посередине
-	int scoreL; // количество очков игроков
-	int scoreR;
-	float textPosX; 
-	float textPosY;
-	float ballSpeedX; // скорость шарика по х
-	float pSpeedY; // скорость платформ
-	
-	game(){
+
+game::game(){
 	orthoWid = 700; // размеры координатной сетки
 	orthoHeid = 700;
 	
@@ -53,13 +27,6 @@ class game{
 	ballSpeedX = 0.5; // скорость шарика по х
 	pSpeedY = 1; // скорость платформ
 	}
-	void start_settings();
-	void win();
-	void keyControl();
-	void keyReset();
-	void drawField();
-	void drawScore();
-}settings;
 
 void game::drawField(){
 	glColor3f(1,1,1);
@@ -120,5 +87,32 @@ void game::drawScore(){
 		
 	}
 }
-
+void game::start_settings(){
+	leftP.size = 200;
+	rightP.size = 200;
+	leftP.x = -510;
+	rightP.x = 510;
+while(ball.vx == 0){
+	ball.vx = (rand()%3 - 1)*ballSpeedX;
+}
+ball.x=0;
+ball.y=0;
+ball.vy=0;
+}
+void game::win(){
+	if((scoreL == 8 )|| (scoreR == 8)){
+	
+		glutTimerFunc(2000,exit,0);
+		settings.delay = 10000;
+	}
+	if(ball.x < leftP.x + pThickness - ballSpeedX){
+		rightP.hold = true;
+		scoreR++;
+	}
+	if(ball.x > rightP.x - pThickness + ballSpeedX){
+		leftP.hold = true;
+		scoreL++;
+	}
+	
+}
 
